@@ -17,4 +17,5 @@ jobs:
         run: |
           wget "https://downloads.godotengine.org/?version=${{ env.GODOT_VERSION }}&flavor=stable&slug=linux.x86_64.zip&platform=linux.64" -O godot.zip
           unzip godot.zip
+          mv Godot_v*-stable_linux.x86_64 godot
           ls -la
