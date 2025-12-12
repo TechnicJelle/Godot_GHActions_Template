@@ -20,6 +20,7 @@ jobs:
           mv Godot_v*-stable_linux.x86_64 godot
           wget "https://downloads.godotengine.org/?version=${{ env.GODOT_VERSION }}&flavor=stable&slug=export_templates.tpz&platform=templates" -O templates.zip
           unzip templates.zip
+          mkdir -p $HOME/.local/share/godot/export_templates/
           mv templates/ $HOME/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable/
       - name: Export Project
         run: |
