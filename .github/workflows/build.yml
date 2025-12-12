@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-linux:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -22,16 +22,29 @@ jobs:
           unzip templates.zip
           mkdir -p $HOME/.local/share/godot/export_templates/
           mv templates/ $HOME/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable/
+
       - name: Set GitHub Environment Variables
         run: |
           echo "GITHUB_SHA_SHORT=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
-      - name: Export Project
+
+      - name: Export Project Linux
         run: |
-          BUILD_DIR="build/${{ github.event.repository.name }}_${{ env.GITHUB_SHA_SHORT }}"
+          BUILD_DIR="build/linux/${{ github.event.repository.name }}_${{ env.GITHUB_SHA_SHORT }}"
           mkdir -p $BUILD_DIR
           ./godot --headless --verbose --export-release "Linux" "$BUILD_DIR/${{ github.event.repository.name }}.x86_64"
-      - name: Upload a Build Artifact
+      - name: Upload Linux Build
         uses: actions/upload-artifact@v6
         with:
-          name: build_${{ env.GITHUB_SHA_SHORT }}
-          path: build/
+          name: build_linux_${{ env.GITHUB_SHA_SHORT }}
+          path: build/linux/
+
+      - name: Export Project Windows
+        run: |
+          BUILD_DIR="build/windows/${{ github.event.repository.name }}_${{ env.GITHUB_SHA_SHORT }}"
+          mkdir -p $BUILD_DIR
+          ./godot --headless --verbose --export-release "Windows Desktop" "$BUILD_DIR/${{ github.event.repository.name }}.exe"
+      - name: Upload Windows Build
+        uses: actions/upload-artifact@v6
+        with:
+          name: build_windows_${{ env.GITHUB_SHA_SHORT }}
+          path: build/windows/
