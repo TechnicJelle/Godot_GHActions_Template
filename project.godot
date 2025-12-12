@@ -11,9 +11,15 @@ config_version=5
 [application]
 
 config/name="Godot_GHActions_Template"
-run/main_scene="res://main.tscn"
+run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.5", "Mobile")
-config/icon="res://icon.svg"
+config/icon="res://assets/icon.svg"
+
+[file_customization]
+
+folder_colors={
+"res://build/": "gray"
+}
 
 [rendering]
 

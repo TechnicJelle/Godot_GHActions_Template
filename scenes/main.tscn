@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b17vhbbbfysp0"]
 
-[ext_resource type="Script" uid="uid://uomse3i6ommn" path="res://button.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://uomse3i6ommn" path="res://scripts/button.gd" id="1_o5qli"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -42,7 +42,7 @@ offset_right = 4.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Button"
-script = ExtResource("1_ig7tw")
+script = ExtResource("1_o5qli")
 label = NodePath("../Label")
 
 [connection signal="pressed" from="CanvasLayer/Control/Button" to="CanvasLayer/Control/Button" method="_on_pressed"]
