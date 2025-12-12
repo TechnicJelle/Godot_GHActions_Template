@@ -13,7 +13,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+      
+      - name: Restore Godot Install from Cache
+        id: cache-godot
+        uses: actions/cache@v5
+        with:
+          path: godot
+          key: ${{ runner.os }}-godot
+
       - name: Install Godot
+        if: steps.cache-godot.outputs.cache-hit != 'true'
         run: |
           wget --progress=bar:force:noscroll "https://downloads.godotengine.org/?version=${{ env.GODOT_VERSION }}&flavor=stable&slug=linux.x86_64.zip&platform=linux.64" -O godot.zip
           unzip godot.zip
