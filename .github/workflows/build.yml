@@ -20,7 +20,7 @@ jobs:
         with:
           path: |
             godot
-            $HOME/.local/share/godot/export_templates/
+            ~/.local/share/godot/export_templates/
           key: ${{ runner.os }}-godot
 
       - name: Install Godot
