@@ -15,5 +15,5 @@ jobs:
       - uses: actions/checkout@v6
       - name: Install Godot
         run: |
-          wget "https://downloads.godotengine.org/?version={{ env.GODOT_VERSION }}&flavor=stable&slug=linux.x86_64.zip&platform=linux.64"
+          wget "https://downloads.godotengine.org/?version=${{ env.GODOT_VERSION }}&flavor=stable&slug=linux.x86_64.zip&platform=linux.64"
           ls -la
