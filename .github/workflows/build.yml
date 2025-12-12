@@ -28,7 +28,7 @@ jobs:
       - name: Export Project
         run: |
           BUILD_DIR="build/${{ github.event.repository.name }}_${{ env.GITHUB_SHA_SHORT }}"
-          mkdir $BUILD_DIR
+          mkdir -p $BUILD_DIR
           ./godot --headless --verbose --export-release "Linux" "$BUILD_DIR/${{ github.event.repository.name }}.x86_64"
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v6
